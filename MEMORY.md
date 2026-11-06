@@ -33,7 +33,9 @@ The source deck remains unchanged.
 - Keep API keys in environment variables. Do not log credentials or provider error bodies.
 - Keep runtime databases, test folders, and bytecode outside delivery ZIP files.
 - Do not add dependencies for standard-library functionality.
-- The project has its own Git repository on `main`. Public GitHub publication is requested; authentication is pending.
+- Public repository: https://github.com/ibtissamshazil/finance-exception-desk
+- GitHub Desktop publishes the repository through its existing signed-in account. The only branch is `main`.
+- `.env` remains ignored and untracked. Only the credential-free `.env.example` enters Git history.
 - Split implementation work into tasks touching at most five authored files.
 
 ## Verification
