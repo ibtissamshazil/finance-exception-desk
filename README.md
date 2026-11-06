@@ -21,6 +21,8 @@ Open <http://127.0.0.1:8765> if the browser does not open automatically.
 If that port is busy, run `python app.py --port 8766 --open`.
 
 Do not open `index.html` directly. The dashboard needs its Python server.
+When relocating the checkout, preserve `.env` and `data/` to retain local credentials and audit records.
+Start the server again from the new checkout. Git excludes both local settings and runtime records.
 
 ## Try the examples
 

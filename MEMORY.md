@@ -37,6 +37,9 @@ The source deck remains unchanged.
 - GitHub Desktop publishes the repository through its existing signed-in account. The only branch is `main`.
 - `.env` remains ignored and untracked. Only the credential-free `.env.example` enters Git history.
 - Split implementation work into tasks touching at most five authored files.
+- The checkout resides in the standard GitHub workspace instead of the generated artifact folder.
+- Preserve ignored `.env` and `data/finance_demo.sqlite3` during relocation. Runtime audit records move with the checkout.
+- Start the server from its current checkout; application paths resolve relative to `app.py`.
 
 ## Verification
 
