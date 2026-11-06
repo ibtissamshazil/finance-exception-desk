@@ -1,0 +1,2129 @@
+{
+  "description": "Synthetic offline example reviews from the running demo.",
+  "summary": {
+    "clean": 2,
+    "exceptions": 8,
+    "invoices": 10,
+    "known_total_aed": "76900.00",
+    "payments_executed": 0,
+    "reviewed": 10
+  },
+  "reviews": [
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-182"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "ABC"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-81"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "ABC"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "21500.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "18000.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "3500.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "21500.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "present"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-182",
+        "issue_codes": [
+          "over_po"
+        ],
+        "issues": [
+          {
+            "code": "over_po",
+            "message": "Invoice exceeds PO limit by AED 3,500.00."
+          }
+        ],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "5a234f52c3b7d191ee972957c6148f31306429d78b7de7bd086607d010a0282e",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": "21500.00",
+            "approval_history": [
+              "Finance manager"
+            ],
+            "description": "The exact example from slide 6: AED 21,500 against AED 18,000.",
+            "id": "INV-182",
+            "ledger_amount_aed": "21500.00",
+            "po_id": "PO-81",
+            "scenario": "Over PO limit",
+            "supplier": "ABC",
+            "supplier_invoice": "ABC-1042"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-81",
+            "limit_aed": "18000.00",
+            "supplier": "ABC"
+          }
+        },
+        "variance_aed": "3500.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-182",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-182"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "ABC"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-81"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "ABC"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "21500.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "18000.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "3500.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "21500.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "present"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Invoice exceeds PO limit by AED 3,500.00.",
+        "recommended_action": "Hold for finance review; verify an amended PO or approval."
+      },
+      "review_id": "5b89128e-d81c-411f-8111-6d2ee12477f7",
+      "source_hash": "5a234f52c3b7d191ee972957c6148f31306429d78b7de7bd086607d010a0282e",
+      "tool_trace": [
+        {
+          "detail": "INV-182",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-81",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "3500.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "over_po",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-183"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Crescent Office"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-82"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Crescent Office"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "6400.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "6400.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "6400.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-183",
+        "issue_codes": [],
+        "issues": [],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "fa9945a72d980a9c41f3a905b4e51032f4be912f3b5676dd9a1cbdc48b07aa8f",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": "6400.00",
+            "approval_history": [],
+            "description": "Invoice, PO, and ledger match. Amount is below the approval threshold.",
+            "id": "INV-183",
+            "ledger_amount_aed": "6400.00",
+            "po_id": "PO-82",
+            "scenario": "Clean exact match",
+            "supplier": "Crescent Office",
+            "supplier_invoice": "CO-221"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-82",
+            "limit_aed": "6400.00",
+            "supplier": "Crescent Office"
+          }
+        },
+        "variance_aed": "0.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-183",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-183"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Crescent Office"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-82"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Crescent Office"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "6400.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "6400.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "6400.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Invoice is within its PO limit, matches the ledger, and passes the sample approval rule.",
+        "recommended_action": "Present the clean match to a human reviewer; do not execute payment."
+      },
+      "review_id": "4fd50dca-947c-4b8e-be37-f405915df1fc",
+      "source_hash": "fa9945a72d980a9c41f3a905b4e51032f4be912f3b5676dd9a1cbdc48b07aa8f",
+      "tool_trace": [
+        {
+          "detail": "INV-183",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-82",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "0.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "clean match",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-184"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-83"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.duplicate_ids",
+            "value": "INV-185"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "10000.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "-200.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-184",
+        "issue_codes": [
+          "duplicate"
+        ],
+        "issues": [
+          {
+            "code": "duplicate",
+            "message": "Potential duplicate: supplier, supplier invoice number, and amount also match INV-185."
+          }
+        ],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "df70c675d2ff4b70071b975e8b79831b2bf78dbe690072652b53c665b8bd499a",
+        "source_snapshot": {
+          "duplicate_invoices": [
+            {
+              "amount_aed": "9800.00",
+              "approval_history": [],
+              "description": "The second copy of INV-184. Both copies require investigation.",
+              "id": "INV-185",
+              "ledger_amount_aed": "9800.00",
+              "po_id": "PO-84",
+              "scenario": "Duplicate invoice",
+              "supplier": "Sandstone Tech",
+              "supplier_invoice": "ST-771"
+            }
+          ],
+          "invoice": {
+            "amount_aed": "9800.00",
+            "approval_history": [],
+            "description": "Same supplier, supplier invoice number, and amount as INV-185.",
+            "id": "INV-184",
+            "ledger_amount_aed": "9800.00",
+            "po_id": "PO-83",
+            "scenario": "Duplicate invoice",
+            "supplier": "Sandstone Tech",
+            "supplier_invoice": "ST-771"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-83",
+            "limit_aed": "10000.00",
+            "supplier": "Sandstone Tech"
+          }
+        },
+        "variance_aed": "-200.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-184",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-184"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-83"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.duplicate_ids",
+            "value": "INV-185"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "10000.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "-200.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Potential duplicate: supplier, supplier invoice number, and amount also match INV-185.",
+        "recommended_action": "Hold for finance review; investigate the duplicate records."
+      },
+      "review_id": "0890af4a-69be-48e5-becb-397b616d98aa",
+      "source_hash": "df70c675d2ff4b70071b975e8b79831b2bf78dbe690072652b53c665b8bd499a",
+      "tool_trace": [
+        {
+          "detail": "INV-184",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-83",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "-200.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "duplicate",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-185"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-84"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.duplicate_ids",
+            "value": "INV-184"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "10000.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "-200.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-185",
+        "issue_codes": [
+          "duplicate"
+        ],
+        "issues": [
+          {
+            "code": "duplicate",
+            "message": "Potential duplicate: supplier, supplier invoice number, and amount also match INV-184."
+          }
+        ],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "aaf3db81d0f2a426b2b8575848fe21f7156df6a4dc0ad3528c974a0154cf1869",
+        "source_snapshot": {
+          "duplicate_invoices": [
+            {
+              "amount_aed": "9800.00",
+              "approval_history": [],
+              "description": "Same supplier, supplier invoice number, and amount as INV-185.",
+              "id": "INV-184",
+              "ledger_amount_aed": "9800.00",
+              "po_id": "PO-83",
+              "scenario": "Duplicate invoice",
+              "supplier": "Sandstone Tech",
+              "supplier_invoice": "ST-771"
+            }
+          ],
+          "invoice": {
+            "amount_aed": "9800.00",
+            "approval_history": [],
+            "description": "The second copy of INV-184. Both copies require investigation.",
+            "id": "INV-185",
+            "ledger_amount_aed": "9800.00",
+            "po_id": "PO-84",
+            "scenario": "Duplicate invoice",
+            "supplier": "Sandstone Tech",
+            "supplier_invoice": "ST-771"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-84",
+            "limit_aed": "10000.00",
+            "supplier": "Sandstone Tech"
+          }
+        },
+        "variance_aed": "-200.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-185",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-185"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-84"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Sandstone Tech"
+          },
+          {
+            "source": "invoice.duplicate_ids",
+            "value": "INV-184"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "10000.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "-200.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "9800.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Potential duplicate: supplier, supplier invoice number, and amount also match INV-184.",
+        "recommended_action": "Hold for finance review; investigate the duplicate records."
+      },
+      "review_id": "edcd2762-b6da-4498-8dce-ec26a818e854",
+      "source_hash": "aaf3db81d0f2a426b2b8575848fe21f7156df6a4dc0ad3528c974a0154cf1869",
+      "tool_trace": [
+        {
+          "detail": "INV-185",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-84",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "-200.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "duplicate",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-186"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Oasis Facilities"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-85"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Oasis Facilities"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "12500.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "12500.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "12500.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-186",
+        "issue_codes": [
+          "missing_approval"
+        ],
+        "issues": [
+          {
+            "code": "missing_approval",
+            "message": "No approval record exists for an invoice at or above AED 10,000.00."
+          }
+        ],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "a45a4f4ff0d8547ca616030644bcc2e88b2a1c25a784a064b271c5f1f0e361eb",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": "12500.00",
+            "approval_history": [],
+            "description": "Amount exceeds the approval threshold, but approval history is empty.",
+            "id": "INV-186",
+            "ledger_amount_aed": "12500.00",
+            "po_id": "PO-85",
+            "scenario": "Missing approval",
+            "supplier": "Oasis Facilities",
+            "supplier_invoice": "OF-043"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-85",
+            "limit_aed": "12500.00",
+            "supplier": "Oasis Facilities"
+          }
+        },
+        "variance_aed": "0.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-186",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-186"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Oasis Facilities"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-85"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Oasis Facilities"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "12500.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "12500.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "12500.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "No approval record exists for an invoice at or above AED 10,000.00.",
+        "recommended_action": "Hold for finance review; request the missing approval record."
+      },
+      "review_id": "4ea61879-a462-4ebb-a823-3aff9313602a",
+      "source_hash": "a45a4f4ff0d8547ca616030644bcc2e88b2a1c25a784a064b271c5f1f0e361eb",
+      "tool_trace": [
+        {
+          "detail": "INV-186",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-85",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "0.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "missing_approval",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-187"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Harbor Logistics"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-86"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Harbor Logistics"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "5200.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "5200.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "5000.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "200.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-187",
+        "issue_codes": [
+          "ledger_mismatch"
+        ],
+        "issues": [
+          {
+            "code": "ledger_mismatch",
+            "message": "Invoice minus ledger amount is AED 200.00."
+          }
+        ],
+        "ledger_variance_aed": "200.00",
+        "source_hash": "fb52cfbe7a0d52ea6c486e6f7e750157ab8cd14387e73bb9f385779c37452bed",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": "5200.00",
+            "approval_history": [],
+            "description": "Invoice and PO match. The ledger is AED 200 lower.",
+            "id": "INV-187",
+            "ledger_amount_aed": "5000.00",
+            "po_id": "PO-86",
+            "scenario": "Ledger discrepancy",
+            "supplier": "Harbor Logistics",
+            "supplier_invoice": "HL-340"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-86",
+            "limit_aed": "5200.00",
+            "supplier": "Harbor Logistics"
+          }
+        },
+        "variance_aed": "0.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-187",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-187"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Harbor Logistics"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-86"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Harbor Logistics"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "5200.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "5200.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "5000.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "200.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Invoice minus ledger amount is AED 200.00.",
+        "recommended_action": "Hold for finance review; reconcile the invoice and ledger."
+      },
+      "review_id": "4d586f24-7d05-478c-a2af-c9b365d01efa",
+      "source_hash": "fb52cfbe7a0d52ea6c486e6f7e750157ab8cd14387e73bb9f385779c37452bed",
+      "tool_trace": [
+        {
+          "detail": "INV-187",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-86",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "0.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "ledger_mismatch",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-188"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Palm Digital"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-87"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Palm Digital"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "3000.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "4500.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "-1500.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "3000.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-188",
+        "issue_codes": [],
+        "issues": [],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "0b44d1cf5fa313b4be7872d423b366173172e8b03342a37b7c44ff18f39b326e",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": "3000.00",
+            "approval_history": [],
+            "description": "Invoice is AED 1,500 below the PO limit. The ledger matches.",
+            "id": "INV-188",
+            "ledger_amount_aed": "3000.00",
+            "po_id": "PO-87",
+            "scenario": "Clean under limit",
+            "supplier": "Palm Digital",
+            "supplier_invoice": "PD-880"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-87",
+            "limit_aed": "4500.00",
+            "supplier": "Palm Digital"
+          }
+        },
+        "variance_aed": "-1500.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-188",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-188"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Palm Digital"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-87"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Palm Digital"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "3000.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "4500.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "-1500.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "3000.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Invoice is within its PO limit, matches the ledger, and passes the sample approval rule.",
+        "recommended_action": "Present the clean match to a human reviewer; do not execute payment."
+      },
+      "review_id": "7feb5375-b6c3-47a4-a9ad-6941d3f36a65",
+      "source_hash": "0b44d1cf5fa313b4be7872d423b366173172e8b03342a37b7c44ff18f39b326e",
+      "tool_trace": [
+        {
+          "detail": "INV-188",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-87",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "-1500.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "clean match",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-189"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Horizon Consulting"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-MISSING"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "7600.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "missing or invalid"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "not calculated"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "7600.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-189",
+        "issue_codes": [
+          "missing_po"
+        ],
+        "issues": [
+          {
+            "code": "missing_po",
+            "message": "Referenced purchase order PO-MISSING is absent from the source records."
+          }
+        ],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "9ab108f5860a74cb4249516e3624cd30d39391019000acce62fb3920bec9fe3a",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": "7600.00",
+            "approval_history": [],
+            "description": "The referenced purchase order does not exist in this source snapshot.",
+            "id": "INV-189",
+            "ledger_amount_aed": "7600.00",
+            "po_id": "PO-MISSING",
+            "scenario": "Missing purchase order",
+            "supplier": "Horizon Consulting",
+            "supplier_invoice": "HC-141"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": null
+        },
+        "variance_aed": null
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-189",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-189"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Horizon Consulting"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-MISSING"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "7600.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "missing or invalid"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "not calculated"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "7600.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Referenced purchase order PO-MISSING is absent from the source records.",
+        "recommended_action": "Hold for finance review; verify the missing or inconsistent source records."
+      },
+      "review_id": "dce554de-f279-4bbc-a714-e8cb9e46b2c2",
+      "source_hash": "9ab108f5860a74cb4249516e3624cd30d39391019000acce62fb3920bec9fe3a",
+      "tool_trace": [
+        {
+          "detail": "INV-189",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-MISSING",
+          "status": "missing",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "Source amount or PO is unavailable.",
+          "status": "skipped",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "missing_po",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-190"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Desert Print"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-89"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Metro Print"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "1100.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "1100.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "1100.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-190",
+        "issue_codes": [
+          "supplier_mismatch"
+        ],
+        "issues": [
+          {
+            "code": "supplier_mismatch",
+            "message": "Invoice supplier Desert Print differs from PO supplier Metro Print."
+          }
+        ],
+        "ledger_variance_aed": "0.00",
+        "source_hash": "5ed9d93652cfb5f29cf840c4475a52721e05fe1fa746d5ae4a15662505014e0f",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": "1100.00",
+            "approval_history": [],
+            "description": "Amounts match, but the PO names a different supplier.",
+            "id": "INV-190",
+            "ledger_amount_aed": "1100.00",
+            "po_id": "PO-89",
+            "scenario": "Supplier mismatch",
+            "supplier": "Desert Print",
+            "supplier_invoice": "DP-091"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-89",
+            "limit_aed": "1100.00",
+            "supplier": "Metro Print"
+          }
+        },
+        "variance_aed": "0.00"
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-190",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-190"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Desert Print"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-89"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Metro Print"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "1100.00"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "1100.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "1100.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "0.00"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Invoice supplier Desert Print differs from PO supplier Metro Print.",
+        "recommended_action": "Hold for finance review; verify the missing or inconsistent source records."
+      },
+      "review_id": "bb1fa412-b01f-442b-a766-eeea0cb2f837",
+      "source_hash": "5ed9d93652cfb5f29cf840c4475a52721e05fe1fa746d5ae4a15662505014e0f",
+      "tool_trace": [
+        {
+          "detail": "INV-190",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-89",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "0.00",
+          "status": "ok",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "supplier_mismatch",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    },
+    {
+      "decision": null,
+      "engine": "offline",
+      "facts": {
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-191"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Vertex Services"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-90"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Vertex Services"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "missing or invalid"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "2500.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "not calculated"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "2500.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "not calculated"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "invoice_id": "INV-191",
+        "issue_codes": [
+          "invalid_amount"
+        ],
+        "issues": [
+          {
+            "code": "invalid_amount",
+            "message": "Invoice amount is missing or invalid; no PO variance is calculated."
+          }
+        ],
+        "ledger_variance_aed": null,
+        "source_hash": "a934eed79b580f4a4ab989350972b3e24e28b34c27d5a773f22b6d3ee82b4af5",
+        "source_snapshot": {
+          "duplicate_invoices": [],
+          "invoice": {
+            "amount_aed": null,
+            "approval_history": [],
+            "description": "Amount is absent. The application must not guess the amount or calculate a variance.",
+            "id": "INV-191",
+            "ledger_amount_aed": "2500.00",
+            "po_id": "PO-90",
+            "scenario": "Missing invoice amount",
+            "supplier": "Vertex Services",
+            "supplier_invoice": "VS-012"
+          },
+          "policy": {
+            "approval_threshold_aed": "10000.00",
+            "currency": "AED",
+            "id": "AP-DEMO-01",
+            "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+            "variance_tolerance_aed": "0.00"
+          },
+          "purchase_order": {
+            "id": "PO-90",
+            "limit_aed": "2500.00",
+            "supplier": "Vertex Services"
+          }
+        },
+        "variance_aed": null
+      },
+      "model": "deterministic-demo-v1",
+      "payment_executed": false,
+      "requested_mode": "demo",
+      "review": {
+        "case_id": "INV-191",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "source": "invoice.id",
+            "value": "INV-191"
+          },
+          {
+            "source": "invoice.supplier",
+            "value": "Vertex Services"
+          },
+          {
+            "source": "invoice.po_id",
+            "value": "PO-90"
+          },
+          {
+            "source": "policy.id",
+            "value": "AP-DEMO-01"
+          },
+          {
+            "source": "purchase_order.supplier",
+            "value": "Vertex Services"
+          },
+          {
+            "source": "invoice.amount_aed",
+            "value": "missing or invalid"
+          },
+          {
+            "source": "purchase_order.limit_aed",
+            "value": "2500.00"
+          },
+          {
+            "source": "calculated.variance_aed",
+            "value": "not calculated"
+          },
+          {
+            "source": "invoice.ledger_amount_aed",
+            "value": "2500.00"
+          },
+          {
+            "source": "calculated.ledger_variance_aed",
+            "value": "not calculated"
+          },
+          {
+            "source": "invoice.approval_record",
+            "value": "absent"
+          },
+          {
+            "source": "policy.approval_threshold_aed",
+            "value": "10000.00"
+          }
+        ],
+        "needs_human_review": true,
+        "reason": "Invoice amount is missing or invalid; no PO variance is calculated.",
+        "recommended_action": "Hold for finance review; verify the missing or inconsistent source records."
+      },
+      "review_id": "3ec1c05a-531c-40fe-abbe-5ffb2d857955",
+      "source_hash": "a934eed79b580f4a4ab989350972b3e24e28b34c27d5a773f22b6d3ee82b4af5",
+      "tool_trace": [
+        {
+          "detail": "INV-191",
+          "status": "ok",
+          "step": "get_invoice"
+        },
+        {
+          "detail": "PO-90",
+          "status": "ok",
+          "step": "get_purchase_order"
+        },
+        {
+          "detail": "AP-DEMO-01",
+          "status": "ok",
+          "step": "get_policy"
+        },
+        {
+          "detail": "Source amount or PO is unavailable.",
+          "status": "skipped",
+          "step": "calculate_variance"
+        },
+        {
+          "detail": "invalid_amount",
+          "status": "ok",
+          "step": "check_exceptions"
+        },
+        {
+          "detail": "deterministic-demo-v1",
+          "status": "offline",
+          "step": "generate_review"
+        },
+        {
+          "detail": "All structured fields match source facts.",
+          "status": "passed",
+          "step": "validate_review"
+        },
+        {
+          "detail": "Review and audit event commit together.",
+          "status": "committed",
+          "step": "write_audit_event"
+        }
+      ],
+      "validation": {
+        "checks": [
+          "schema",
+          "source IDs",
+          "exact evidence",
+          "approved reason and action",
+          "human-review flag"
+        ],
+        "errors": [],
+        "status": "passed"
+      }
+    }
+  ]
+}

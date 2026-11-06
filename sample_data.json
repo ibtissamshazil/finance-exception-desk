@@ -1,0 +1,34 @@
+{
+  "dataset": "Week 37A synthetic teaching data. All suppliers and records are fictional.",
+  "policy": {
+    "id": "AP-DEMO-01",
+    "currency": "AED",
+    "approval_threshold_aed": "10000.00",
+    "variance_tolerance_aed": "0.00",
+    "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review."
+  },
+  "invoices": [
+    {"id":"INV-182","supplier":"ABC","supplier_invoice":"ABC-1042","amount_aed":"21500.00","po_id":"PO-81","ledger_amount_aed":"21500.00","approval_history":["Finance manager"],"scenario":"Over PO limit","description":"The exact example from slide 6: AED 21,500 against AED 18,000."},
+    {"id":"INV-183","supplier":"Crescent Office","supplier_invoice":"CO-221","amount_aed":"6400.00","po_id":"PO-82","ledger_amount_aed":"6400.00","approval_history":[],"scenario":"Clean exact match","description":"Invoice, PO, and ledger match. Amount is below the approval threshold."},
+    {"id":"INV-184","supplier":"Sandstone Tech","supplier_invoice":"ST-771","amount_aed":"9800.00","po_id":"PO-83","ledger_amount_aed":"9800.00","approval_history":[],"scenario":"Duplicate invoice","description":"Same supplier, supplier invoice number, and amount as INV-185."},
+    {"id":"INV-185","supplier":"Sandstone Tech","supplier_invoice":"ST-771","amount_aed":"9800.00","po_id":"PO-84","ledger_amount_aed":"9800.00","approval_history":[],"scenario":"Duplicate invoice","description":"The second copy of INV-184. Both copies require investigation."},
+    {"id":"INV-186","supplier":"Oasis Facilities","supplier_invoice":"OF-043","amount_aed":"12500.00","po_id":"PO-85","ledger_amount_aed":"12500.00","approval_history":[],"scenario":"Missing approval","description":"Amount exceeds the approval threshold, but approval history is empty."},
+    {"id":"INV-187","supplier":"Harbor Logistics","supplier_invoice":"HL-340","amount_aed":"5200.00","po_id":"PO-86","ledger_amount_aed":"5000.00","approval_history":[],"scenario":"Ledger discrepancy","description":"Invoice and PO match. The ledger is AED 200 lower."},
+    {"id":"INV-188","supplier":"Palm Digital","supplier_invoice":"PD-880","amount_aed":"3000.00","po_id":"PO-87","ledger_amount_aed":"3000.00","approval_history":[],"scenario":"Clean under limit","description":"Invoice is AED 1,500 below the PO limit. The ledger matches."},
+    {"id":"INV-189","supplier":"Horizon Consulting","supplier_invoice":"HC-141","amount_aed":"7600.00","po_id":"PO-MISSING","ledger_amount_aed":"7600.00","approval_history":[],"scenario":"Missing purchase order","description":"The referenced purchase order does not exist in this source snapshot."},
+    {"id":"INV-190","supplier":"Desert Print","supplier_invoice":"DP-091","amount_aed":"1100.00","po_id":"PO-89","ledger_amount_aed":"1100.00","approval_history":[],"scenario":"Supplier mismatch","description":"Amounts match, but the PO names a different supplier."},
+    {"id":"INV-191","supplier":"Vertex Services","supplier_invoice":"VS-012","amount_aed":null,"po_id":"PO-90","ledger_amount_aed":"2500.00","approval_history":[],"scenario":"Missing invoice amount","description":"Amount is absent. The application must not guess the amount or calculate a variance."}
+  ],
+  "purchase_orders": [
+    {"id":"PO-81","supplier":"ABC","limit_aed":"18000.00"},
+    {"id":"PO-82","supplier":"Crescent Office","limit_aed":"6400.00"},
+    {"id":"PO-83","supplier":"Sandstone Tech","limit_aed":"10000.00"},
+    {"id":"PO-84","supplier":"Sandstone Tech","limit_aed":"10000.00"},
+    {"id":"PO-85","supplier":"Oasis Facilities","limit_aed":"12500.00"},
+    {"id":"PO-86","supplier":"Harbor Logistics","limit_aed":"5200.00"},
+    {"id":"PO-87","supplier":"Palm Digital","limit_aed":"4500.00"},
+    {"id":"PO-88","supplier":"Horizon Consulting","limit_aed":"7600.00"},
+    {"id":"PO-89","supplier":"Metro Print","limit_aed":"1100.00"},
+    {"id":"PO-90","supplier":"Vertex Services","limit_aed":"2500.00"}
+  ]
+}

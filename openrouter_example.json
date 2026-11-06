@@ -1,0 +1,211 @@
+{
+  "engine": "live",
+  "facts": {
+    "evidence": [
+      {
+        "source": "invoice.id",
+        "value": "INV-182"
+      },
+      {
+        "source": "invoice.supplier",
+        "value": "ABC"
+      },
+      {
+        "source": "invoice.po_id",
+        "value": "PO-81"
+      },
+      {
+        "source": "policy.id",
+        "value": "AP-DEMO-01"
+      },
+      {
+        "source": "purchase_order.supplier",
+        "value": "ABC"
+      },
+      {
+        "source": "invoice.amount_aed",
+        "value": "21500.00"
+      },
+      {
+        "source": "purchase_order.limit_aed",
+        "value": "18000.00"
+      },
+      {
+        "source": "calculated.variance_aed",
+        "value": "3500.00"
+      },
+      {
+        "source": "invoice.ledger_amount_aed",
+        "value": "21500.00"
+      },
+      {
+        "source": "calculated.ledger_variance_aed",
+        "value": "0.00"
+      },
+      {
+        "source": "invoice.approval_record",
+        "value": "present"
+      },
+      {
+        "source": "policy.approval_threshold_aed",
+        "value": "10000.00"
+      }
+    ],
+    "invoice_id": "INV-182",
+    "issue_codes": [
+      "over_po"
+    ],
+    "issues": [
+      {
+        "code": "over_po",
+        "message": "Invoice exceeds PO limit by AED 3,500.00."
+      }
+    ],
+    "ledger_variance_aed": "0.00",
+    "source_hash": "5a234f52c3b7d191ee972957c6148f31306429d78b7de7bd086607d010a0282e",
+    "source_snapshot": {
+      "duplicate_invoices": [],
+      "invoice": {
+        "amount_aed": "21500.00",
+        "approval_history": [
+          "Finance manager"
+        ],
+        "description": "The exact example from slide 6: AED 21,500 against AED 18,000.",
+        "id": "INV-182",
+        "ledger_amount_aed": "21500.00",
+        "po_id": "PO-81",
+        "scenario": "Over PO limit",
+        "supplier": "ABC",
+        "supplier_invoice": "ABC-1042"
+      },
+      "policy": {
+        "approval_threshold_aed": "10000.00",
+        "currency": "AED",
+        "id": "AP-DEMO-01",
+        "rule": "Invoices at or above AED 10,000 require an approval record. Any positive PO overage or ledger difference requires review.",
+        "variance_tolerance_aed": "0.00"
+      },
+      "purchase_order": {
+        "id": "PO-81",
+        "limit_aed": "18000.00",
+        "supplier": "ABC"
+      }
+    },
+    "variance_aed": "3500.00"
+  },
+  "model": "dots-studio/dots-3-note-preview:free",
+  "payment_executed": false,
+  "requested_mode": "live",
+  "review": {
+    "case_id": "INV-182",
+    "confidence": 1.0,
+    "evidence": [
+      {
+        "source": "invoice.id",
+        "value": "INV-182"
+      },
+      {
+        "source": "invoice.supplier",
+        "value": "ABC"
+      },
+      {
+        "source": "invoice.po_id",
+        "value": "PO-81"
+      },
+      {
+        "source": "policy.id",
+        "value": "AP-DEMO-01"
+      },
+      {
+        "source": "purchase_order.supplier",
+        "value": "ABC"
+      },
+      {
+        "source": "invoice.amount_aed",
+        "value": "21500.00"
+      },
+      {
+        "source": "purchase_order.limit_aed",
+        "value": "18000.00"
+      },
+      {
+        "source": "calculated.variance_aed",
+        "value": "3500.00"
+      },
+      {
+        "source": "invoice.ledger_amount_aed",
+        "value": "21500.00"
+      },
+      {
+        "source": "calculated.ledger_variance_aed",
+        "value": "0.00"
+      },
+      {
+        "source": "invoice.approval_record",
+        "value": "present"
+      },
+      {
+        "source": "policy.approval_threshold_aed",
+        "value": "10000.00"
+      }
+    ],
+    "needs_human_review": true,
+    "reason": "Invoice exceeds PO limit by AED 3,500.00.",
+    "recommended_action": "Hold for finance review; verify an amended PO or approval."
+  },
+  "review_id": "90bb842d-e767-4efe-9519-8518adf0d22b",
+  "source_hash": "5a234f52c3b7d191ee972957c6148f31306429d78b7de7bd086607d010a0282e",
+  "tool_trace": [
+    {
+      "detail": "INV-182",
+      "status": "ok",
+      "step": "get_invoice"
+    },
+    {
+      "detail": "PO-81",
+      "status": "ok",
+      "step": "get_purchase_order"
+    },
+    {
+      "detail": "AP-DEMO-01",
+      "status": "ok",
+      "step": "get_policy"
+    },
+    {
+      "detail": "3500.00",
+      "status": "ok",
+      "step": "calculate_variance"
+    },
+    {
+      "detail": "over_po",
+      "status": "ok",
+      "step": "check_exceptions"
+    },
+    {
+      "detail": "dots-studio/dots-3-note-preview:free",
+      "status": "live",
+      "step": "generate_review"
+    },
+    {
+      "detail": "All structured fields match source facts.",
+      "status": "passed",
+      "step": "validate_review"
+    },
+    {
+      "detail": "Review and audit event commit together.",
+      "status": "committed",
+      "step": "write_audit_event"
+    }
+  ],
+  "validation": {
+    "checks": [
+      "schema",
+      "source IDs",
+      "exact evidence",
+      "approved reason and action",
+      "human-review flag"
+    ],
+    "errors": [],
+    "status": "passed"
+  }
+}
